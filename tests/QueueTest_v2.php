@@ -2,6 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 
+
+// I do not like this approach
 class QueueTest_v2 extends TestCase
 {
     public function testNewQueueIsEmpty() // producer
