@@ -5,6 +5,11 @@
     "scripts": {
         "phpunitw": "./vendor/bin/phpunit",
         "tests": "./vendor/bin/phpunit tests"
+    },
+    "autoload": {
+        "psr-4":{
+            "":"src/"
+        }
     }
 }
 

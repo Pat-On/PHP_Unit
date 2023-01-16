@@ -1,13 +1,19 @@
 <?php
-
-
 use PHPUnit\Framework\TestCase;
+
+// one way of using autoload <- not  recommended
+// require './vendor/autoload.php';
+// or
+// you can use bootstrap
+// ./vendor/bin/phpunit --bootstrap="./vendor/autoload.php"
+
+// important composer dump-autoload
 
 class UserTest extends TestCase
 {
     public function testReturnsFullName()
     {
-        require 'User.php';
+        // require 'User.php';
 
         $user = new User;
 
