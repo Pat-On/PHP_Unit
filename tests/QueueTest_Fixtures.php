@@ -54,4 +54,26 @@ class QueueTest_Fixtures extends TestCase
 
         $this->assertEquals('first', $this->queue->pop());
     }
+
+    public function testMaxNumberOfItemsCanBeAdded()
+    {
+        for ($i = 0; $i < Queue::MAX_ITEMS; $i++) {
+            $this->queue->push($i);
+        }
+
+        $this->assertEquals(Queue::MAX_ITEMS, $this->queue->getCount());
+    }
+
+    // testing exceptions
+    public function testExceptionThrownAddingAnItemToAFullQueue()
+    {
+        for ($i = 0; $i < Queue::MAX_ITEMS; $i++) {
+            $this->queue->push($i);
+        }
+
+        $this->expectException(QueueException::class);
+
+        $this->expectExceptionMessage("Queue is full");
+        $this->queue->push("Wafer thin mint");
+    }
 }
