@@ -1,4 +1,5 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 // one way of using autoload <- not  recommended
@@ -53,6 +54,24 @@ class UserTest extends TestCase
 
 
         $this->assertEquals('Teresa', $user->first_name);
+    }
+
+    public function testNotificationIsSent()
+    {
+        $user = new User;
+
+        // mocking class
+        $mock_mailer = $this->createMock(Mailer::class);
+
+        // modifying default null return of the mocked class
+        $mock_mailer->method('sendMessage')
+            ->willReturn(true);
+
+        $user->setMailer($mock_mailer);
+
+        $user->email = "dave@example.com";
+
+        $this->assertTrue($user->notify("Hello"));
     }
 }
 
