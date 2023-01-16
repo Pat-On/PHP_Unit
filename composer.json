@@ -3,6 +3,9 @@
         "phpunit/phpunit": "9.5"
     },
     "scripts": {
-        "phpunitw": "./vendor/bin/phpunit"
+        "phpunitw": "./vendor/bin/phpunit",
+        "tests": "./vendor/bin/phpunit tests"
     }
 }
+
+
