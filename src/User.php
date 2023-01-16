@@ -63,7 +63,6 @@ class User
      */
     public function notify($message)
     {
-
         return $this->mailer->sendMessage($this->email, $message);
     }
 }
