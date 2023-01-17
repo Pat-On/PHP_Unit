@@ -35,12 +35,18 @@ class User
      */
     protected $mailer;
 
+    protected $mailerStatic;
+
     /**
      * Set the mailer dependency
      * 
      * @param Mailer $mailer The mailer object
      */
     public function setMailer(Mailer $mailer){
+        $this->mailer = $mailer;
+    }
+
+    public function setMailerStatic(Mailer $mailer){
         $this->mailer = $mailer;
     }
 
@@ -64,5 +70,18 @@ class User
     public function notify($message)
     {
         return $this->mailer->sendMessage($this->email, $message);
+    }
+
+        /**
+     * Send the user a message
+     * 
+     * @param string $message The message
+     * 
+     * @return boolean True if sent, false oterwise
+     */
+    public function notifyStatic($message)
+    {
+        // return Mailer::send($this->email, $message);
+        return $this->mailer::send($this->email, $message);
     }
 }

@@ -113,6 +113,21 @@ class UserTest extends TestCase
 
         $user->notify("Hello");
     }
+
+    // testing static dependencies
+    public function testNotifyReturnsTrue()
+    {
+        $user = new User;
+
+        // $user->setMailerStatic(new Mailer);
+
+        $mailer = $this->createMock(Mailer::class); // you can stub only instance methods not static
+        $user->setMailerStatic($mailer);
+
+
+        $user->email = "dave@example.com";
+        $this->assertTrue($user->notifyStatic("Hello"));
+    }
 }
 
 // ./vendor/bin/phpunit tests/functionTest.php
